@@ -1,6 +1,5 @@
-// Firebase config
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBqubO0ZNhDG2ZZheFKg898kb_17T67e5I",
@@ -14,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Submit button
 const submitBtn = document.getElementById("submitBtn");
 const nameInput = document.getElementById("nameInput");
 const deptInput = document.getElementById("deptInput");
@@ -28,16 +26,32 @@ submitBtn.addEventListener("click", async function() {
         return;
     }
 
+    // Get today's date
     const now = new Date();
+    const today = now.toLocaleDateString();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const date = now.toLocaleDateString();
 
     try {
+        // Check if name already submitted today
+        const q = query(
+            collection(db, "attendance"),
+            where("name", "==", name),
+            where("date", "==", today)
+        );
+
+        const existing = await getDocs(q);
+
+        if (!existing.empty) {
+            alert("⚠️ " + name + " already submitted attendance today!");
+            return;
+        }
+
+        // Save to Firebase
         await addDoc(collection(db, "attendance"), {
             name: name,
             department: dept,
             time: time,
-            date: date
+            date: today
         });
 
         nameInput.value = "";
