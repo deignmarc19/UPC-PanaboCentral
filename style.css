@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    font-family: 'Inter', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #021526;
+    padding: 20px;
+    text-align: bold;
+}
+
+.header h1 {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.form-container {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: white;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 20px 16px 10px;
+    border: none;
+    border-radius: 12px;
+    background-color: rgba(2,21,38,0.55);
+    font-size: 15px;
+    color: white;
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    opacity: 0.7;
+    font-size: 15px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: 8px;
+    font-size: 11px;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.form-container button {
+    background-color: #03346E;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    width: auto;
+    align-self: center;
+}
+
+.form-container button:hover {
+    background-color: #021526;
+}
+
+.photo-container {
+    padding: 20px;
+    flex: 1;
+    background-color: white;
+}
+
+.photo-container img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 300px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+}
+
+.footer {
+    background-color: #021526;
+    padding: 16px;
+    text-align: center;
+    border-radius: 16px;
+    width: 326px;
+    height: 51px;
+    margin: 10px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .form-container {
+        padding: 20px 16px;
+    }
+
+    .photo-container img {
+        max-height: 250px;
+    }
+}
+
+

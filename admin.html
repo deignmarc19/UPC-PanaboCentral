@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Admin Dashboard</h1>
+        <button class="burger" id="burgerBtn">☰</button>
+    </div>
+
+    <!-- Burger Menu -->
+    <div class="burger-menu" id="burgerMenu">
+        <button id="saveBtn">💾 Save Data</button>
+        <button id="clearBtn">🗑️ Clear Data</button>
+    </div>
+
+    <!-- Total Counter -->
+    <div class="counter-card">
+        <p>Total Present: <span id="totalCount">0</span></p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceTable">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>UPC - PANABO CENTRAL 🌐</p>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
