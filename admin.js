@@ -36,8 +36,12 @@ onSnapshot(collection(db, "attendance"), (snapshot) => {
     tableBody.innerHTML = "";
     totalCount.innerText = snapshot.size;
 
-    snapshot.forEach((doc) => {
-        const data = doc.data();
+    // Sort by time ascending
+    const records = [];
+    snapshot.forEach((doc) => records.push(doc.data()));
+    records.sort((a, b) => a.name.localeCompare(b.name));
+
+    records.forEach((data) => {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${data.name}</td>
