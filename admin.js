@@ -1,3 +1,19 @@
+// Firebase config
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBqubO0ZNhDG2ZZheFKg898kb_17T67e5I",
+    authDomain: "church-attendance-add52.firebaseapp.com",
+    projectId: "church-attendance-add52",
+    storageBucket: "church-attendance-add52.firebasestorage.app",
+    messagingSenderId: "836701669987",
+    appId: "1:836701669987:web:34abe89d45383651ffc656"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 // Burger Menu
 const burgerBtn = document.getElementById("burgerBtn");
 const burgerMenu = document.getElementById("burgerMenu");
@@ -5,7 +21,6 @@ const burgerMenu = document.getElementById("burgerMenu");
 burgerBtn.addEventListener("click", function() {
     burgerMenu.classList.toggle("open");
     burgerBtn.classList.toggle("active");
-
     if (burgerMenu.classList.contains("open")) {
         burgerBtn.innerText = "✕";
     } else {
@@ -13,38 +28,34 @@ burgerBtn.addEventListener("click", function() {
     }
 });
 
-// Load attendance data from localStorage
-function loadData() {
-    const data = JSON.parse(localStorage.getItem("attendance")) || [];
-    const table = document.getElementById("attendanceTable");
-    const totalCount = document.getElementById("totalCount");
+// Load data in real time
+const tableBody = document.getElementById("attendanceTable");
+const totalCount = document.getElementById("totalCount");
 
-    // Clear table first
-    table.innerHTML = "";
+onSnapshot(collection(db, "attendance"), (snapshot) => {
+    tableBody.innerHTML = "";
+    totalCount.innerText = snapshot.size;
 
-    // Update counter
-    totalCount.innerText = data.length;
-
-    // Add rows
-    data.forEach(function(record) {
+    snapshot.forEach((doc) => {
+        const data = doc.data();
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${record.name}</td>
-            <td>${record.department}</td>
-            <td>${record.time}</td>
-            <td>${record.date}</td>
+            <td>${data.name}</td>
+            <td>${data.department}</td>
+            <td>${data.time}</td>
+            <td>${data.date}</td>
         `;
-        table.appendChild(row);
+        tableBody.appendChild(row);
     });
-}
+});
 
 // Save as CSV
-document.getElementById("saveBtn").addEventListener("click", function() {
-    const data = JSON.parse(localStorage.getItem("attendance")) || [];
-
+document.getElementById("saveBtn").addEventListener("click", async function() {
+    const snapshot = await getDocs(collection(db, "attendance"));
     let csv = "Name,Department,Time,Date\n";
-    data.forEach(function(record) {
-        csv += `${record.name},${record.department},${record.time},${record.date}\n`;
+    snapshot.forEach((doc) => {
+        const d = doc.data();
+        csv += `${d.name},${d.department},${d.time},${d.date}\n`;
     });
 
     const blob = new Blob([csv], { type: "text/csv" });
@@ -53,20 +64,18 @@ document.getElementById("saveBtn").addEventListener("click", function() {
     a.href = url;
     a.download = "attendance.csv";
     a.click();
-
     burgerMenu.classList.remove("open");
 });
 
 // Clear Data
-document.getElementById("clearBtn").addEventListener("click", function() {
+document.getElementById("clearBtn").addEventListener("click", async function() {
     const confirm = window.confirm("Are you sure you want to clear all data?");
     if (confirm) {
-        localStorage.removeItem("attendance");
-        loadData();
+        const snapshot = await getDocs(collection(db, "attendance"));
+        snapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+        });
         burgerMenu.classList.remove("open");
         alert("Data cleared successfully!");
     }
 });
-
-// Load data on page open
-loadData();
