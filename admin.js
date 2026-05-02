@@ -62,8 +62,11 @@ document.getElementById("saveBtn").addEventListener("click", async function() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "attendance.csv";
+    a.setAttribute("download", "attendance.csv");
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
     burgerMenu.classList.remove("open");
 });
 
