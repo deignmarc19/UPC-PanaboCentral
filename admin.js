@@ -2,6 +2,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, onSnapshot, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "login.html";
+}
+
 const firebaseConfig = {
     apiKey: "AIzaSyBqubO0ZNhDG2ZZheFKg898kb_17T67e5I",
     authDomain: "church-attendance-add52.firebaseapp.com",
