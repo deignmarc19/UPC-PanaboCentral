@@ -12,28 +12,36 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
+/* Max width container for PC/Laptop */
 .header {
     background-color: #021526;
     padding: 20px;
-    text-align: bold;
+    text-align: center;
+    width: 100%;
 }
 
 .header h1 {
     color: white;
     font-size: 22px;
     font-weight: bold;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
+/* Form Container */
 .form-container {
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
     background-color: white;
+    width: 100%;
+    max-width: 480px;
 }
 
+/* Floating Label Input Group */
 .input-group {
     position: relative;
     margin-bottom: 20px;
@@ -70,10 +78,12 @@ body {
     font-weight: bold;
 }
 
+/* Submit Button */
 .form-container button {
     background-color: #03346E;
     color: white;
     padding: 12px 30px;
+    border: none;
     border-radius: 12px;
     font-size: 15px;
     font-weight: bold;
@@ -88,10 +98,37 @@ body {
     background-color: #021526;
 }
 
+/* Admin Buttons */
+.admin-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-btn {
+    flex: 1;
+    background-color: #021526;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-btn:hover {
+    background-color: #03346E;
+}
+
+/* Church Photo */
 .photo-container {
     padding: 20px;
     flex: 1;
     background-color: white;
+    width: 100%;
+    max-width: 480px;
 }
 
 .photo-container img {
@@ -102,6 +139,7 @@ body {
     box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
 }
 
+/* Footer */
 .footer {
     background-color: #021526;
     padding: 16px;
@@ -121,7 +159,8 @@ body {
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 480px) {
     .header h1 {
         font-size: 18px;
     }
@@ -133,6 +172,32 @@ body {
     .photo-container img {
         max-height: 250px;
     }
+
+    .footer {
+        width: 90%;
+    }
 }
 
+@media (min-width: 768px) {
+    body {
+        background-color: #f0f0f0;
+    }
 
+    .header {
+        background-color: #021526;
+    }
+
+    .form-container {
+        background-color: white;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .photo-container {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-radius: 16px;
+        padding: 20px;
+        background-color: white;
+        margin-bottom: 20px;
+    }
+}

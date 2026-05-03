@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            background-color: #021526;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-header {
+            padding: 30px 20px 20px;
+            text-align: left;
+        }
+
+        .login-header h1 {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 4s steps(30) infinite;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            50% { width: 100%; }
+            75% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        .login-card {
+            background-color: #E8E8E8;
+            border-radius: 24px 24px 0 0;
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-card .input-group input {
+            background-color: rgba(2,21,38,0.45);
+            -webkit-text-fill-color: white;
+        }
+
+        .login-card .input-group input:-webkit-autofill,
+        .login-card .input-group input:-webkit-autofill:hover,
+        .login-card .input-group input:-webkit-autofill:focus {
+            -webkit-text-fill-color: white;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(2,21,38,0.55) inset;
+            transition: background-color 5000s ease-in-out 0s;
+            border-radius: 12px;
+        }
+
+        .login-card .input-group label {
+            color: white;
+        }
+
+        .submit-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 5px;
+        }
+
+        .login-card button {
+            background-color: #021526;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-card button:hover {
+            background-color: #03346E;
+        }
+
+        .login-photo {
+            padding: 20px 0;
+            flex: 1;
+        }
+
+        .login-photo img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            max-height: 280px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .login-footer {
+            background-color: #021526;
+            padding: 16px;
+            text-align: center;
+            border-radius: 16px;
+            width: 326px;
+            height: 51px;
+            margin: 10px auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-footer p {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #errorMsg {
+            color: red;
+            text-align: center;
+            display: none;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body class="login-page">
+
+    <div class="login-header">
+        <h1>LOVING GOD AND CARING PEOPLE</h1>
+    </div>
+
+    <div class="login-card">
+
+        <div class="input-group">
+            <input type="text" id="emailInput" placeholder=" " autocomplete="off">
+            <label for="emailInput">Email</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="passwordInput" placeholder=" " autocomplete="off">
+            <label for="passwordInput">Password</label>
+            <span id="togglePassword" onclick="togglePass()" style="
+                position: absolute;
+                right: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 18px;
+                color: white;
+                opacity: 0.7;
+                user-select: none;
+            ">🙈</span>
+        </div>
+
+        <p id="errorMsg">❌ Wrong email or password!</p>
+
+        <div class="submit-row">
+            <button id="loginBtn">Submit</button>
+        </div>
+
+        <div class="login-photo">
+            <img src="church.jpg" alt="Church Photo">
+        </div>
+
+        <div class="login-footer">
+            <p>UPC - PANABO CENTRAL 🌐</p>
+        </div>
+
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById("loginBtn");
+        const emailInput = document.getElementById("emailInput");
+        const passwordInput = document.getElementById("passwordInput");
+        const errorMsg = document.getElementById("errorMsg");
+
+        const adminEmail = "AdminTeacher";
+        const adminPassword = "UpcPanaboCentral2003@";
+
+        loginBtn.addEventListener("click", function() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (email === adminEmail && password === adminPassword) {
+                sessionStorage.setItem("loggedIn", "true");
+                window.location.href = "admin.html";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        });
+
+        function togglePass() {
+            const input = document.getElementById("passwordInput");
+            const icon = document.getElementById("togglePassword");
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.innerText = "👁️";
+            } else {
+                input.type = "password";
+                icon.innerText = "🙈";
+            }
+        }
+    </script>
+
+</body>
+</html>

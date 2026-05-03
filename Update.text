@@ -1,0 +1,14 @@
+Church-Attendance Update:
+
+🔐 Feature 1 — Admin Login Page
+
+Admin enters username and password
+Only admin can access admin.html
+Wrong password → blocked!
+
+
+⚠️ Feature 2 — Duplicate Attendance Warning
+
+Member submits their name
+Firebase checks if that name already submitted today
+If yes → warning appears:

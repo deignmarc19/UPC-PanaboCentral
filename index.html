@@ -12,20 +12,24 @@
     </div>
 
     <div class="form-container">
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder=" ">
+            <label for="nameInput">Enter your Name...</label>
+        </div>
 
-    <div class="input-group">
-        <input type="text" id="nameInput" placeholder=" ">
-        <label for="nameInput">Enter your Name...</label>
+        <div class="input-group">
+            <input type="text" id="deptInput" placeholder=" ">
+            <label for="deptInput">Enter your Department...</label>
+        </div>
+
+        <button id="submitBtn">Submit</button>
+
+        <div class="admin-buttons">
+            <button class="admin-btn" onclick="window.location.href='login.html'">🙏 Prayer Admin</button>
+            <button class="admin-btn" onclick="window.location.href='login.html'">📚 Teacher Admin</button>
+        </div>
+
     </div>
-
-    <div class="input-group">
-        <input type="text" id="deptInput" placeholder=" ">
-        <label for="deptInput">Enter your Department...</label>
-    </div>
-
-    <button id="submitBtn">Submit</button>
-
-</div>
 
     <div class="photo-container">
         <img src="church.jpg" alt="Church Photo">
@@ -35,9 +39,8 @@
         <p>UPC - PANABO CENTRAL 🌐</p>
     </div>
 
-    <a href="admin.html" style="opacity: 0.1; font-size: 10px;">.</a>
-    
+
     <script type="module" src="script.js"></script>
-    
+
 </body>
 </html>
