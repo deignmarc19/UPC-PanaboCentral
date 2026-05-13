@@ -43,9 +43,11 @@ function getLocation() {
                         `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
                     );
                     const data = await response.json();
-                    const road = data.address.road || 
-                        data.address.street || 
-                        data.address.neighbourhood || "";
+                    const road = data.address.suburb || 
+                        data.address.neighbourhood || 
+                        data.address.quarter ||
+                        data.address.road || 
+                        data.address.street || "";
                     const city = data.address.city || 
                         data.address.town || 
                         data.address.municipality || 
