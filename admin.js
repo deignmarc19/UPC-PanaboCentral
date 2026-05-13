@@ -40,7 +40,6 @@ onSnapshot(collection(db, "attendance"), (snapshot) => {
     tableBody.innerHTML = "";
     totalCount.innerText = snapshot.size;
 
-    // Sort by time ascending
     const records = [];
     snapshot.forEach((doc) => records.push(doc.data()));
     records.sort((a, b) => a.name.localeCompare(b.name));
@@ -52,6 +51,7 @@ onSnapshot(collection(db, "attendance"), (snapshot) => {
             <td>${data.department}</td>
             <td>${data.time}</td>
             <td>${data.date}</td>
+            <td>${data.location || "N/A"}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -60,10 +60,10 @@ onSnapshot(collection(db, "attendance"), (snapshot) => {
 // Save as CSV
 document.getElementById("saveBtn").addEventListener("click", async function() {
     const snapshot = await getDocs(collection(db, "attendance"));
-    let csv = "Name,Department,Time,Date\n";
+    let csv = "Name,Department,Time,Date,Location\n";
     snapshot.forEach((doc) => {
         const d = doc.data();
-        csv += `${d.name},${d.department},${d.time},${d.date}\n`;
+        csv += `${d.name},${d.department},${d.time},${d.date},${d.location || "N/A"}\n`;
     });
 
     const blob = new Blob([csv], { type: "text/csv" });
