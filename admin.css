@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    
 }
 
 /* Header */
@@ -85,18 +86,19 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #021526;
+    box-shadow: 10px 10px 5px #888888;
 }
 
-/* Table */
 .table-container {
     margin: 0 20px 20px;
     border-radius: 12px;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 550px;
 }
 
 thead tr {
@@ -160,4 +162,10 @@ tbody td {
         font-size: 11px;
         padding: 10px 6px;
     }
+
+    thead th:nth-child(1) { width: 120px; }
+    thead th:nth-child(2) { width: 110px; }
+    thead th:nth-child(3) { width: 80px; }
+    thead th:nth-child(4) { width: 90px; }
+    thead th:nth-child(5) { width: 160px; }
 }
