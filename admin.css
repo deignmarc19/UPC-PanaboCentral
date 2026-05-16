@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #E2E2B6;
+    background-color: white;
     font-family: 'Inter', Arial, sans-serif;
     min-height: 100vh;
     display: flex;
@@ -78,7 +78,7 @@ body {
 
 /* Counter Card */
 .counter-card {
-    background-color: white;
+    background-color: #EDE9E6;
     margin: 20px;
     padding: 16px;
     border-radius: 12px;
@@ -113,7 +113,7 @@ thead th {
 }
 
 tbody tr:nth-child(odd) {
-    background-color: white;
+    background-color: #EDE9E6;
 }
 
 tbody tr:nth-child(even) {
