@@ -1,3 +1,34 @@
+// Force external browser
+if (navigator.userAgent.includes('FBAN') || 
+    navigator.userAgent.includes('FBAV') ||
+    navigator.userAgent.includes('Instagram') ||
+    navigator.userAgent.includes('Messenger')) {
+    
+    document.body.innerHTML = `
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 30px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #021526;
+            color: white;
+        ">
+            <h2 style="margin-bottom: 20px;">⛪ UPC Panabo Central</h2>
+            <p style="margin-bottom: 30px; font-size: 16px; opacity: 0.8;">
+                For better experience please open this link in your browser!
+            </p>
+            <p style="font-size: 14px; opacity: 0.6;">
+                Tap the 3 dots ⋮ menu then select<br>
+                <strong>"Open in Chrome"</strong> or <strong>"Open in Browser"</strong>
+            </p>
+        </div>
+    `;
+}
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
@@ -78,7 +109,6 @@ submitBtn.addEventListener("click", async function() {
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     try {
-        // Check duplicate
         const q = query(
             collection(db, "attendance"),
             where("name", "==", name),
@@ -90,14 +120,11 @@ submitBtn.addEventListener("click", async function() {
             return;
         }
 
-        // Disable button while getting location
         submitBtn.disabled = true;
         submitBtn.innerText = "Getting location...";
 
-        // Get location
         const location = await getLocation();
 
-        // Save to Firebase
         await addDoc(collection(db, "attendance"), {
             name: name,
             department: dept,
