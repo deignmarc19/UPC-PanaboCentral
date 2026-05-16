@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #f0f0f0;
     font-family: 'Inter', Arial, sans-serif;
     min-height: 100vh;
     display: flex;
@@ -21,13 +21,14 @@ body {
     padding: 20px;
     text-align: center;
     width: 100%;
+    max-width: 480px;
+    border-radius: 0 0 0 0;
 }
 
 .header h1 {
     color: white;
     font-size: 22px;
     font-weight: bold;
-    max-width: 480px;
     margin: 0 auto;
 }
 
@@ -56,6 +57,16 @@ body {
     font-size: 15px;
     color: white;
     outline: none;
+    -webkit-text-fill-color: white;
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(2,21,38,0.55) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    border-radius: 12px;
 }
 
 .input-group label {
@@ -125,10 +136,12 @@ body {
 /* Church Photo */
 .photo-container {
     padding: 20px;
-    flex: 1;
     background-color: white;
     width: 100%;
     max-width: 480px;
+    margin-bottom: 20px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .photo-container img {
@@ -145,7 +158,8 @@ body {
     padding: 16px;
     text-align: center;
     border-radius: 16px;
-    width: 326px;
+    width: 100%;
+    max-width: 480px;
     height: 51px;
     margin: 10px auto 20px;
     display: flex;
@@ -175,29 +189,5 @@ body {
 
     .footer {
         width: 90%;
-    }
-}
-
-@media (min-width: 768px) {
-    body {
-        background-color: #f0f0f0;
-    }
-
-    .header {
-        background-color: #021526;
-    }
-
-    .form-container {
-        background-color: white;
-        border-radius: 0 0 16px 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    .photo-container {
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        border-radius: 16px;
-        padding: 20px;
-        background-color: white;
-        margin-bottom: 20px;
     }
 }
